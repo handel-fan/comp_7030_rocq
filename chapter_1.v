@@ -36,19 +36,47 @@ Definition negb (b:bool) : bool :=
   | false => true
   end.
 
-Definition andb (b1:bool, b2:bool) : bool :=
+Definition andb (b1:bool) (b2:bool) : bool :=
   match b1 with
   | true => b2
   | false => false
   end.
 
-Definition orb (b1:bool, b2:bool) : bool :=
+Definition orb (b1:bool) (b2:bool) : bool :=
   match b1 with
   | true => true
   | false => b2
   end.
 
-Example orb1 (orb(true, true)) => true
-Example orb2 (orb(true, false)) => true
-Example orb3 (orb(false, true)) => true
-Example orb4 (orb(false, false)) => false
+Example orb1 : (orb true true) = true.
+Proof. simpl. reflexivity. Qed.
+Example orb2 : (orb true false) = true.
+Proof. simpl. reflexivity. Qed.
+Example orb3 : (orb false true) = true.
+Proof. simpl. reflexivity. Qed.
+Example orb4 : (orb false false) = false.
+Proof. simpl. reflexivity. Qed.
+
+Notation "x && y" := (andb x y).
+Notation "x || y" := (orb x y).
+
+Example test_orb5: false || false || true = true.
+Proof. simpl. reflexivity. Qed.
+
+Definition negb' (b:bool) : bool :=
+  if b 
+  then false 
+  else true.
+
+Definition andb' (b1:bool)(b2:bool) : bool :=
+  if b1
+  then b2
+  else false.
+
+Definition orb' (b1:bool) (b2:bool) : bool :=
+  if b1 then true
+  else b2.
+
+(* Section about using conditional expressions on non-boolean types *)
+
+
