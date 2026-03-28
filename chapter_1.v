@@ -1,3 +1,4 @@
+
 Inductive day : Type :=
   | monday
   | tuesday
@@ -24,7 +25,6 @@ Example test_next_working_day:
 
 Proof. simpl. reflexivity. Qed.
 
-From Stdlib Require Export String.
 
 Inductive bool : Type :=
   | true
@@ -255,3 +255,152 @@ Fixpoint minus (n m:nat) : nat :=
   | S _, O => n
   | S n', S m' => minus n' m'
   end.
+
+End NatPlayground2.
+
+Fixpoint exp (base power : nat) : nat :=
+  match power with
+  | O => S O
+  | S p => mult base (exp base p)
+  end.
+
+Fixpoint factorial (n : nat) : nat :=
+  match n with
+  | O => S O
+  | S n' => mult n (factorial n')
+  end.
+
+Example test_fact1: (factorial 3) = 6.
+Proof. simpl. reflexivity. Qed.
+Example test_fact2: (factorial 0) = 1.
+Proof. simpl. reflexivity. Qed.
+
+Compute (factorial 3).
+
+Notation "x + y" := (plus x y)
+  (at level 50, left associativity)
+  : nat_scope.
+
+Notation "x - y" := (minus x y)
+  (at level 50, left associativity)
+  : nat_scope.
+
+Notation "x * y" := (mult x y)
+  (at level 40, left associativity)
+  : nat_scope.
+
+Check ((0 + 1) + 1) : nat.
+
+Fixpoint eqb  (n m : nat): bool :=
+  match n with
+  | O => match m with
+          | O => true 
+          | S m' => false
+          end
+  | S n' => match m with
+             | O => false
+             | S m' => eqb n' m'
+             end
+             end.
+
+
+Fixpoint leb (n m : nat): bool :=
+  match n with
+  | O => true
+  | S n' =>
+      match m with
+      | O => false
+      | S m' => leb n' m'
+      end
+    end.
+
+Example test_leb1: leb 2 2 = true.
+Proof. simpl. reflexivity. Qed.
+Example test_leb2: leb 2 4 = true.
+Proof. simpl. reflexivity. Qed.
+Example test_leb3: leb 4 2 = false.
+Proof. simpl. reflexivity. Qed.
+
+Notation "x =? y" := (eqb x y) (at level 70) : nat_scope.
+Notation "x <=? y" := (leb x y) (at level 70) : nat_scope.
+
+Definition ltb (n m : nat) : bool :=
+  leb (S n) m.
+
+Example plus_1_1 : 1 + 1 = 2.
+Proof. simpl. reflexivity. Qed.
+
+Theorem plus_0_n : forall n : nat, 0 + n = n.
+Proof. intros n. reflexivity. Qed.
+
+Theorem plus_1_l : forall n : nat, 1 + n = S n.
+Proof.
+  intros n. reflexivity. Qed.
+
+
+Theorem mult_0_l : forall n : nat, 0 * n = 0.
+Proof.
+  simpl. intros n. reflexivity. Qed.
+
+Theorem plus_id_example : forall n m:nat,
+  n = m -> n + n = m + m. 
+Proof.
+  (* move both quantifiers into the context: *)
+  intros n m.
+  (* move the hypothesis into the context: *)
+  intros H.
+  (* rewrite the goal using the hypothesis: *)
+  rewrite -> H.
+  reflexivity. Qed.
+
+(* Building blocks:
+intros, rewrite, reflexivity*)
+
+Theorem plus_id_exercise : forall n m o : nat,
+n = m -> m = o -> n + m = m + o.
+Proof.
+  intros n m o.
+  intros H1.
+  intros H2.
+  rewrite -> H1.
+  rewrite -> H2.
+  reflexivity. Qed.
+
+
+Check mult_n_O.
+(* ===> forall n : nat, 0 = n * 0 *)
+Check mult_n_Sm.
+(* ===> forall n m : nat, n * m + n = n * S m *)
+
+
+Theorem mult_n_0_m_0 : forall p q : nat,
+  (p * 0) + (q * 0) = 0.
+Proof.
+  intros p q.
+  rewrite <- mult_n_O.
+  rewrite <- mult_n_O.
+  reflexivity. Qed.
+
+(* Tools we have: rewrite, intros *)
+Theorem mult_n_1 : forall p : nat,
+  p * 1 = p.
+Proof.
+  intros p.
+  rewrite <- mult_n_Sm.
+  rewrite <- mult_n_O.
+  reflexivity. Qed.
+
+(* Tools are: intros, destruct, hypothesis)
+Theorem andb_true_elim2 : forall b c : bool,
+  andb b c = true -> c = true.
+Proof.
+  intros b c H.
+  destruct b eqn:Eb.
+  simpl in H.
+  - destruct c eqn:Ec.
+  
+
+
+
+
+
