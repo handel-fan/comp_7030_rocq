@@ -39,11 +39,14 @@
 
 \section*{Summary}
 This Research Grant Proposal will focus on the implementation and proofs of
-novel Dependent Type programming concepts.
-Dependent types are types which depend on the values of their underlying terms.
+novel Dependent Type programming structures.
+Dependent Types are types which depend on the values of their underlying terms.
 
 I am interested in working with these types because I am interested in programming languages and type theory. 
-I am interested in (and work on) compilers in my own time, and I am also currently taking a personal research course with Dr. Downen
+My career interest is in compilers, and I work on them in my own time. Compilers and type theory
+are strongly linked - compilers have to reason about types to function.
+
+I am also currently taking a personal research course on Rocq, with Dr. Downen
 supervising.
 
 
@@ -53,14 +56,30 @@ to Rocq. The work involved here is implementation - implementing the proposed ty
 in the proof solver Rocq. This is a good estimate of work for the 1st month.
 
 Next, what is planned is to prove certain properties about these new types which make them desirable to be used.
-Some of these are: soundness - essentially that the runtime guarantees that the type system proposes actually happen
+Some of these are: 
 
-As well as adequacy - ensuring all semantically correct operations succeed.
+\begin{enumerate}
+  \item soundness - The implementation guarantees that if analysis (compilation) succeeds, the execution will 
+    not yield type related runtime errors.
+  \item adequacy - The implementation ensures that as per the type system, semantically correct operations succeed, and the incorrect ones do not.
+\end{enumerate}
 
+Finally, a compiler written in Haskell is planned, to allow for the new type system to be expressively used.
+This involves work like implementing a tokenizer, parser, and type checking.
+
+This second part of the project is meant to allow for evaluation of programs created with these types.
+
+Since the compiler evaluates code and runs it, this part also requires lowering, linking, assembling, etc.
+
+A good estimate for work to be done is implementation in the 1st month, proofs in the 2nd and 3rd months,
+and a compiler for evaluation as a stretch goal.
 
 \section*{Expected Results}
 
+The expected results from this research effort are an implementations of aforementioned dependent type structures,
+as well as proofs of their soundness and adequacy.
 
-
+Lastly, a compiler to evaluate it, is a stretch goal. This compiler would be able to type check and reason about
+the newly proposed types, and evaluate/run code.
 
 \end{document}
