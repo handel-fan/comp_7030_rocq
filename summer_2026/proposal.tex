@@ -39,11 +39,11 @@
 \section*{Summary}
 This Research Grant Proposal will focus on the implementation and proofs of
 novel Dependent Type programming structures.
-Dependent Types are types which depend on the values of their terms.
+Dependent Types are types that depend on values.
 
-Dependent Types allow programmers to express programs invariants in their types.
-Classical programming takes us partly there, but dependent types allow stricter,
-earlier type binding and checks which prevent bugs from happening. One classic case is
+Dependent Types allow programmers to express program invariants in their types.
+Traditional type systems allow partial correctness, but dependent types allow for
+checks which prevent bugs from happening. One classic case is
 a list dependent type which encodes how many elements it has - if a type system correctly encodes this,
 the programmer cannot mistakenly refer to an empty list as if it had elements.
 
@@ -58,23 +58,22 @@ supervising.
 \section*{Planned Work}
 The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
 to Rocq. The work involved here is implementation - implementing the proposed types
-in the proof solver Rocq. This is a good estimate of work for the 1st month.
+in the proof assistant Rocq. This is a good estimate of work for the 1st month.
 
 Next, what is planned is to prove certain properties about these new types which make them desirable to be used.
 Some of these are: 
 
 \begin{enumerate}
-  \item soundness - The implementation guarantees that if analysis (compilation) succeeds, the execution will 
+  \item soundness - The implementation guarantees that if type checking succeeds, the execution will 
     not yield type related runtime errors.
-  \item adequacy - The implementation ensures that as per the type system, semantically correct operations succeed, and the incorrect ones do not.
+  \item adequacy - The implementation guarantees that intended meaning of a type matches the actual
+    behavior of the system.
 \end{enumerate}
 
 Finally, a compiler written in Haskell is planned, to allow for the new type system to be expressively used.
 This involves work like implementing a tokenizer, parser, and type checking.
 
 This second part of the project is meant to allow for evaluation of programs created with these types.
-
-Since the compiler evaluates code and runs it, this part also requires lowering, linking, assembling, etc.
 
 A good estimate for work to be done is implementation in the 1st month, proofs in the 2nd and 3rd months,
 and a compiler for evaluation as a stretch goal.
