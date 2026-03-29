@@ -42,14 +42,15 @@ novel Dependent Type programming structures.
 Dependent Types are types that depend on values.
 
 Dependent Types allow programmers to express program invariants in their types.
-Traditional type systems allow partial correctness, but dependent types allow for
-checks which prevent bugs from happening. One classic case is
-a list dependent type which encodes how many elements it has - if a type system correctly encodes this,
+Traditional type systems allow partial correctness, but dependent types 
+enforce invariants which are useful for preventing bad program behavior.
+One classic case is a list dependent type which encodes how many elements it has - 
+if a type system correctly encodes this,
 the programmer cannot mistakenly refer to an empty list as if it had elements.
 
 I am interested in working with these types because I am interested in programming languages and type theory. 
-My career interest is in compilers, and I work on them in my own time. Compilers and type theory
-are strongly linked - compilers have to reason about types to function.
+My career interest is in compilers, and I work on them in my own time. Type systems are a central component of compilers, as they analyze and enforce
+the correctness of programs before execution.
 
 I am also currently taking a personal graduate research course on Rocq, with Dr. Downen
 supervising.
@@ -57,8 +58,7 @@ supervising.
 
 \section*{Planned Work}
 The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
-to Rocq. The work involved here is implementation - implementing the proposed types
-in the proof assistant Rocq. This is a good estimate of work for the 1st month.
+to Rocq. This involves implementing the proposed types in the proof assistant Rocq.
 
 Next, what is planned is to prove certain properties about these new types which make them desirable to be used.
 Some of these are: 
@@ -70,10 +70,9 @@ Some of these are:
     behavior of the system.
 \end{enumerate}
 
-Finally, a compiler written in Haskell is planned, to allow for the new type system to be expressively used.
-This involves work like implementing a tokenizer, parser, and type checking.
-
-This second part of the project is meant to allow for evaluation of programs created with these types.
+Finally, a compiler written in Haskell is planned to allow programmers to write and execute
+programs using the new type system.
+This involves implementing a tokenizer, parser, and type checker.
 
 A good estimate for work to be done is implementation in the 1st month, proofs in the 2nd and 3rd months,
 and a compiler for evaluation as a stretch goal.
