@@ -36,22 +36,27 @@
 \end{center}
 
 \vspace{1.5em}
-
 \section*{Summary}
 This Research Grant Proposal will focus on the implementation and proofs of
 novel Dependent Type programming structures.
-Dependent Types are types which depend on the values of their underlying terms.
+Dependent Types are types which depend on the values of their terms.
+
+Dependent Types allow programmers to express programs invariants in their types.
+Classical programming takes us partly there, but dependent types allow stricter,
+earlier type binding and checks which prevent bugs from happening. One classic case is
+a list dependent type which encodes how many elements it has - if a type system correctly encodes this,
+the programmer cannot mistakenly refer to an empty list as if it had elements.
 
 I am interested in working with these types because I am interested in programming languages and type theory. 
 My career interest is in compilers, and I work on them in my own time. Compilers and type theory
 are strongly linked - compilers have to reason about types to function.
 
-I am also currently taking a personal research course on Rocq, with Dr. Downen
+I am also currently taking a personal graduate research course on Rocq, with Dr. Downen
 supervising.
 
 
 \section*{Planned Work}
-The planned work is first to port new type structures that Dr. Downen and Shriya Thakur are working on
+The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
 to Rocq. The work involved here is implementation - implementing the proposed types
 in the proof solver Rocq. This is a good estimate of work for the 1st month.
 
@@ -76,7 +81,7 @@ and a compiler for evaluation as a stretch goal.
 
 \section*{Expected Results}
 
-The expected results from this research effort are an implementations of aforementioned dependent type structures,
+The expected results from this research effort are an implementation of aforementioned dependent type structures,
 as well as proofs of their soundness and adequacy.
 
 Lastly, a compiler to evaluate it, is a stretch goal. This compiler would be able to type check and reason about
