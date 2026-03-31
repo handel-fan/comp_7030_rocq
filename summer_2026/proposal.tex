@@ -24,35 +24,34 @@
     {\large Jegannarayanan Sivakasiulaganathan, Student ID: 02197006}
     
     \vspace{0.25em}
-    {\large Advisor: Dr. Paul Downen}
     
+    {\large Graduate Student, Computer Science}
     \vspace{0.25em}
 
-    {\large Graduate Student, Computer Science}
+    {\large Expected Graduation: May 2027}
+
     
     \vspace{0.25em}
     
-    {\large Expected Graduation: May 2027}
+    {\large Advisor: Dr. Paul Downen}
 \end{center}
 
 \vspace{1.5em}
 \section*{Summary}
 
+This project focuses on implementing and proving properties of Dependent 
+Intersection type structures in Rocq, improving how expressive type systems 
+are implemented and verified.
 
-This Research Grant Proposal will focus on the implementation and proofs of 
-novel, cutting-edge Dependent Intersection type programming structures in Rocq, 
-improving how expressive type systems are implemented and verified.
-
-This work brings a currently theoretical type system that Dr. Downen and 
-Shriya Thakur are developing into a practical, usable implementation in Rocq, 
-where we can reason about and prove useful properties.
+This work brings a theoretical type system being developed by Dr. Downen and 
+Shriya Thakur into a practical Rocq implementation where we can prove useful properties.
 
 Dependent Types allow programmers to express program invariants in their types.
 One case is a list dependent type encoding its length - preventing references to 
 empty lists as if they had elements.
 
-Dependent Intersection Types (DITs) allow for types where
-we have terms with type $A \cap B$, and $B$ depends on $A$.
+Dependent Intersection Types (DITs) allow types of the form $A \cap B$, where $B$ depends on $A$.
+
 This lets us say: “this value has property A, and property B defined using A.”
 
 DITs are not available natively in Rocq. As a result, 
@@ -74,7 +73,7 @@ about for correctness.
 
 
 \section*{Planned Work}
-The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
+The planned work is first to port new Dependent Intersection Type structures that Dr. Downen and Shriya Thakur are working on
 to Rocq. This involves implementing the proposed types in the proof assistant Rocq.
 
 Next, what is planned is to prove certain properties about these new types which make them desirable to be used.
