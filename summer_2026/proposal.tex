@@ -38,8 +38,9 @@
 \vspace{1.5em}
 \section*{Summary}
 This Research Grant Proposal will focus on the implementation and proofs of
-novel Dependent Type programming structures.
-Dependent Types are types that depend on values.
+novel, cutting edge Dependent Intersection type programming structures in Rocq.
+
+
 
 Dependent Types allow programmers to express program invariants in their types.
 Traditional type systems allow partial correctness, but dependent types 
@@ -48,13 +49,46 @@ One classic case is a list dependent type which encodes how many elements it has
 if a type system correctly encodes this,
 the programmer cannot mistakenly refer to an empty list as if it had elements.
 
-I am interested in working with these types because I am interested in programming languages and type theory. 
-My career interest is in compilers, and I work on them in my own time. Type systems are a central component of compilers, as they analyze and enforce
-the correctness of programs before execution.
+Dependent Intersection Types allow for intersection types where
+we have terms with type $A \cap B$, and $B$ depends on $A$.
+Intuitively, this lets us say: “this value has property A, and also property B that is defined using A.”
 
-I am also currently taking a personal graduate research course on Rocq, with Dr. Downen
-supervising.
 
+% TODO: Remove the below if word constrained.
+
+Dependent Intersection types are not available natively in Rocq. As a result, 
+programmers must simulate them using existing features which introduces 
+additional proof overhead and complexity
+
+Right now, you can simulate dependent intersections, but doing so makes proofs 
+significantly harder to construct and maintain. When properties depend on values,
+developers—especially programming languages researchers and verification 
+engineers—must manually carry equalities, rewrite terms, and introduce extra 
+helper lemmas just to convince Rocq that related pieces are consistent. In 
+larger projects, like proving a compiler correct or formalizing a type system, 
+this turns into a lot of low-value “bookkeeping” work that slows progress and 
+makes proofs harder to understand and maintain.
+
+Dependent intersection types directly reduce this burden by letting the type 
+system track these relationships automatically. Instead of constantly proving 
+that different pieces line up, the system already knows they do. This can 
+greatly shorten proofs, remove repetitive steps, and make large formal 
+developments more manageable.
+
+Just as importantly, this work has implications for the core design of the 
+proof assistant itself. Today, many different features and patterns are needed 
+to simulate what dependent intersections could express more directly. By 
+introducing a single, well-designed primitive, we can replace several of these 
+workarounds. This leads to a smaller and simpler kernel—the trusted core of 
+the system—which is easier to audit and reason about for correctness.
+
+At the same time, even though the kernel becomes smaller, it becomes more 
+capable (able to describe more kinds of relationships directly). This is 
+valuable because it means we can say more with less machinery: fewer special 
+cases, fewer encodings, and a cleaner foundation overall. For researchers and 
+advanced users, this is a major benefit—it improves both the usability of the 
+system and confidence in its correctness, while enabling more ambitious 
+verification efforts.
 
 \section*{Planned Work}
 The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
@@ -66,7 +100,7 @@ Some of these are:
 \begin{enumerate}
   \item soundness - The implementation guarantees that if type checking succeeds, the execution will 
     not yield type related runtime errors.
-  \item adequacy - The implementation guarantees that intended meaning of a type matches the actual
+  \item adequacy - The implementation guarantees that the intended meaning of a type matches the actual
     behavior of the system.
 \end{enumerate}
 
@@ -86,3 +120,5 @@ Lastly, a compiler to evaluate it, is a stretch goal. This compiler would be abl
 the newly proposed types, and evaluate/run code.
 
 \end{document}
+
+I think the thing that is really missing is some more details about the specifics in the system and the outcomes, that really makes this cutting-edge *research* instead of a general project. For example, what kind of dependent type system is it and what makes it different from the other ones (in this case, the dependent intersection types)? Why are those exciting and an improvement from the current systems (in this case, the ability to encode and express many advanced type system features with a smaller kernel language)? What is the outcome that makes this summer project exciting to do, and why this is a necessary/useful followup step from the starting point that Shriya and I are working on?
