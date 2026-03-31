@@ -41,9 +41,11 @@
 
 This Research Grant Proposal will focus on the implementation and proofs of 
 novel, cutting-edge Dependent Intersection type programming structures in Rocq, 
-benefiting programming language researchers, formal methods engineers, and 
-proof assistant developers by improving how expressive type systems are 
-implemented and verified.
+improving how expressive type systems are implemented and verified.
+
+This work brings a currently theoretical type system that Dr. Downen and 
+Shriya Thakur are developing into a practical, usable implementation in Rocq, 
+where we can reason about and prove useful properties.
 
 Dependent Types allow programmers to express program invariants in their types.
 One case is a list dependent type encoding its length - preventing references to 
@@ -51,22 +53,22 @@ empty lists as if they had elements.
 
 Dependent Intersection Types (DITs) allow for types where
 we have terms with type $A \cap B$, and $B$ depends on $A$.
-Intuitively, this lets us say: “this value has property A, and also property B that is defined using A.”
+This lets us say: “this value has property A, and property B defined using A.”
 
 DITs are not available natively in Rocq. As a result, 
-programmers must simulate them using existing features which introduce 
-additional proof overhead and complexity.
+programmers must simulate them using indirect workarounds, requiring extra 
+manual proof steps and encoding tricks.
 
 The work to encode these relationships via DITs directly into Rocq will
-allowing Programming Language developers to work more efficiently - it's baked into
-the type system.
+allow developers to write simpler proofs with fewer errors by baking these 
+relationships directly into the type system.
 
 This work also has implications for reducing the size of the kernel - in proof assistant
 terms, what can be "assumed" as a base, to solve proofs.
 
 By introducing a single DIT primitive, we can encode
-the functionality into what was once manual and boilerplate workarounds.
-This leads to a smaller and simpler kernel—the trusted core of 
+the functionality into what was once manual workarounds.
+This leads to a smaller and simpler kernel, the trusted core of 
 the system. In Rocq, this makes proofs and code easier to audit and reason 
 about for correctness.
 
@@ -102,4 +104,3 @@ the newly proposed types, and evaluate/run code.
 
 \end{document}
 
-I think the thing that is really missing is some more details about the specifics in the system and the outcomes, that really makes this cutting-edge *research* instead of a general project. For example, what kind of dependent type system is it and what makes it different from the other ones (in this case, the dependent intersection types)? Why are those exciting and an improvement from the current systems (in this case, the ability to encode and express many advanced type system features with a smaller kernel language)? What is the outcome that makes this summer project exciting to do, and why this is a necessary/useful followup step from the starting point that Shriya and I are working on?
