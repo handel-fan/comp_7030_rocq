@@ -46,29 +46,29 @@ proof assistant developers by improving how expressive type systems are
 implemented and verified.
 
 Dependent Types allow programmers to express program invariants in their types.
-One case is a list dependent type encoding its length—preventing references to 
+One case is a list dependent type encoding its length - preventing references to 
 empty lists as if they had elements.
 
-Dependent Intersection Types allow for intersection types where
+Dependent Intersection Types (DITs) allow for types where
 we have terms with type $A \cap B$, and $B$ depends on $A$.
 Intuitively, this lets us say: “this value has property A, and also property B that is defined using A.”
 
-Dependent Intersection Types are not available natively in Rocq. As a result, 
+DITs are not available natively in Rocq. As a result, 
 programmers must simulate them using existing features which introduce 
 additional proof overhead and complexity.
 
-Dependent Intersections Types encode these relationships directly into types,
+The work to encode these relationships via DITs directly into Rocq will
 allowing Programming Language developers to work more efficiently - it's baked into
 the type system.
 
 This work also has implications for reducing the size of the kernel - in proof assistant
 terms, what can be "assumed" as a base, to solve proofs.
 
-By introducing a single Dependent Intersection Type primitive, we can encode
+By introducing a single DIT primitive, we can encode
 the functionality into what was once manual and boilerplate workarounds.
 This leads to a smaller and simpler kernel—the trusted core of 
-the system. In Rocq, this makes proofs and code easier to audit and reason about for correctness, and
-is very important.
+the system. In Rocq, this makes proofs and code easier to audit and reason 
+about for correctness.
 
 
 \section*{Planned Work}
