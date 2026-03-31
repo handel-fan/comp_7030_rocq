@@ -37,58 +37,39 @@
 
 \vspace{1.5em}
 \section*{Summary}
-This Research Grant Proposal will focus on the implementation and proofs of
-novel, cutting edge Dependent Intersection type programming structures in Rocq.
 
 
+This Research Grant Proposal will focus on the implementation and proofs of 
+novel, cutting-edge Dependent Intersection type programming structures in Rocq, 
+benefiting programming language researchers, formal methods engineers, and 
+proof assistant developers by improving how expressive type systems are 
+implemented and verified.
 
 Dependent Types allow programmers to express program invariants in their types.
-Traditional type systems allow partial correctness, but dependent types 
-enforce invariants which are useful for preventing bad program behavior.
-One classic case is a list dependent type which encodes how many elements it has - 
-if a type system correctly encodes this,
-the programmer cannot mistakenly refer to an empty list as if it had elements.
+One case is a list dependent type encoding its length—preventing references to 
+empty lists as if they had elements.
 
 Dependent Intersection Types allow for intersection types where
 we have terms with type $A \cap B$, and $B$ depends on $A$.
 Intuitively, this lets us say: “this value has property A, and also property B that is defined using A.”
 
+Dependent Intersection Types are not available natively in Rocq. As a result, 
+programmers must simulate them using existing features which introduce 
+additional proof overhead and complexity.
 
-% TODO: Remove the below if word constrained.
+Dependent Intersections Types encode these relationships directly into types,
+allowing Programming Language developers to work more efficiently - it's baked into
+the type system.
 
-Dependent Intersection types are not available natively in Rocq. As a result, 
-programmers must simulate them using existing features which introduces 
-additional proof overhead and complexity
+This work also has implications for reducing the size of the kernel - in proof assistant
+terms, what can be "assumed" as a base, to solve proofs.
 
-Right now, you can simulate dependent intersections, but doing so makes proofs 
-significantly harder to construct and maintain. When properties depend on values,
-developers—especially programming languages researchers and verification 
-engineers—must manually carry equalities, rewrite terms, and introduce extra 
-helper lemmas just to convince Rocq that related pieces are consistent. In 
-larger projects, like proving a compiler correct or formalizing a type system, 
-this turns into a lot of low-value “bookkeeping” work that slows progress and 
-makes proofs harder to understand and maintain.
+By introducing a single Dependent Intersection Type primitive, we can encode
+the functionality into what was once manual and boilerplate workarounds.
+This leads to a smaller and simpler kernel—the trusted core of 
+the system. In Rocq, this makes proofs and code easier to audit and reason about for correctness, and
+is very important.
 
-Dependent intersection types directly reduce this burden by letting the type 
-system track these relationships automatically. Instead of constantly proving 
-that different pieces line up, the system already knows they do. This can 
-greatly shorten proofs, remove repetitive steps, and make large formal 
-developments more manageable.
-
-Just as importantly, this work has implications for the core design of the 
-proof assistant itself. Today, many different features and patterns are needed 
-to simulate what dependent intersections could express more directly. By 
-introducing a single, well-designed primitive, we can replace several of these 
-workarounds. This leads to a smaller and simpler kernel—the trusted core of 
-the system—which is easier to audit and reason about for correctness.
-
-At the same time, even though the kernel becomes smaller, it becomes more 
-capable (able to describe more kinds of relationships directly). This is 
-valuable because it means we can say more with less machinery: fewer special 
-cases, fewer encodings, and a cleaner foundation overall. For researchers and 
-advanced users, this is a major benefit—it improves both the usability of the 
-system and confidence in its correctness, while enabling more ambitious 
-verification efforts.
 
 \section*{Planned Work}
 The planned work is first to port new dependent type structures that Dr. Downen and Shriya Thakur are working on
